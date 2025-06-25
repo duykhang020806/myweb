@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>css01.html</title>
+  <style>
+
+    .shadow {
+      font-size: 30px;
+      font-weight: bold;
+      text-shadow: 4px 4px 5px gray;
+    }
+
+    .capitalize {
+        text-transform: capitalize;
+      text-align: center;
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .lowercase {
+      text-transform: lowercase;
+    }
+
+    .format::first-letter {
+  font-size: 70px;
+  font-weight: bold;
+    }
+
+    .boldline {
+  font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <p class="shadow">Dòng này được định dạng có bóng (shadow)</p>
+
+  <p class="p">Văn bản bình thường</p>
+
+  <p class="capitalize">Hoa các ký tự đầu</p>
+
+  <p class="uppercase">HOA TẤT CẢ CÁC KÝ TỰ</p>
+
+  <p class="lowercase">ĐOẠN NÀY SẼ ĐƯỢC CHUYỂN VỀ CHỮ THƯỜNG</p>
+
+  <p class="format">
+    <span class="boldline">Đoạn văn bản này có ký tự đầu được định dạng font-size lớn, dòng đầu tiên</span><br>
+    được in đậm
+  </p>
+  
+</body>
+</html>
