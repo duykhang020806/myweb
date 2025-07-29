@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function reverse() {
+            var s = document.getElementById("txtS1").value;
+            var arr = s.split(" "); // tách chuỗi vào mảng
+            var kq = "";
+            for (var i = arr.length - 1; i >= 0; i--) { // duyệt ngược mảng
+                kq += arr[i].trim() + " ";
+            }
+            document.getElementById("txtS1").value = kq.trim();
+        }
+
+        function normal() {
+            var s = document.getElementById("txtS1").value;
+            var arr = s.split(" ");
+            var i, kq = "", tmp;
+            for (i = 0; i < arr.length; i++) { // duyệt từ đầu mảng
+                tmp = arr[i].trim().toLowerCase(); // lấy từng phần tử chuyển về chữ thường
+                if (tmp != "") {
+                    // hoa ký tự đầu
+                    tmp = tmp.substr(0, 1).toUpperCase() + tmp.substr(1);
+                    kq += tmp + " ";
+                }
+            }
+            document.getElementById("txtS1").value = kq.trim();
+        }
+
+        function xoayChu() {
+            var str = document.getElementById("title").innerHTML;
+            str = str.substr(str.length - 1) + str.substr(0, str.length - 1);
+            document.getElementById("title").innerHTML = str;
+        }
+
+        var strOrigin;
+        function reset() {
+            document.getElementById("txtS1").value = strOrigin;
+        }
+
+        function insert() {
+            var s1 = document.getElementById("txtS1").value;
+            var s2 = document.getElementById("txtS2").value;
+            var pos = document.getElementById("txtPos").value;
+
+            if (pos == "") {
+                alert("Vị trí chưa nhập");
+                return false;
+            }
+
+            pos = Number(pos);
+            if (isNaN(pos) || pos < 0 || pos > s1.length) {
+                alert("Vị trí không hợp lệ");
+                return false;
+            }
+
+            console.log(pos);
+
+            if (s2 == "") {
+                alert("Chưa nhập chuỗi S2");
+                return false;
+            }
+
+            var result = insertAt(s1, s2, pos);
+            if (result) {
+                s1 = document.getElementById("txtS1").value = result;
+            }
+        }
+
+        function insertAt(main_string, ins_string, pos) {
+            return main_string.slice(0, pos) + ins_string + main_string.slice(pos);
+        }
+
+        function replaceAll() {
+            var s1 = document.getElementById("txtS1").value;
+            var s2 = document.getElementById("txtS2").value;
+            var s3 = document.getElementById("txtS3").value;
+            var token = new RegExp(s2, "gi");
+            s1 = s1.replace(token, s3); // thay thế s2 bằng s3 trong s không phân biệt chữ hoa
+            document.getElementById("txtS1").value = s1;
+        }
+
+        function deleteAll() {
+            var s1 = document.getElementById("txtS1").value;
+            var s2 = document.getElementById("txtS2").value;
+            var s3 = document.getElementById("txtS3").value;
+            var token = new RegExp(s2, "gi");
+            s1 = s1.replace(token, ''); // thay thế s2 bằng chuỗi rỗng
+            document.getElementById("txtS1").value = s1;
+        }
+    </script>
+</head>
+
+<body>
+    <table>
+        <caption><h2 id="title">CHƯƠNG TRÌNH XỬ LÝ CHUỖI</h2></caption>
+        <tr>
+            <td>Chuỗi S1:</td>
+            <td>
+                <input type="text" id="txtS1" value="Learning JAVASCRIPT is    veRY easy  " size="50" />
+            </td>
+        </tr>
+        <tr>
+            <td>Chuỗi S2:</td>
+            <td>
+                <input type="text" id="txtS2" value="javascript" size="50" />
+            </td>
+        </tr>
+        <tr>
+            <td>Chuỗi S3:</td>
+            <td>
+                <input type="text" id="txtS3" size="50" />
+            </td>
+        </tr>
+        <tr>
+            <td>Vị trí chèn:</td>
+            <td>
+                <input type="text" id="txtPos" size="0" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button onclick="normal()">Chuẩn hóa chuỗi</button>
+                <button onclick="reverse()">Đảo chuỗi</button>
+                <button onclick="reset()">Khôi phục</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td> <td>
+                <button onclick="replaceAll()">Thay thế S2 bằng S3</button>
+                <button onclick="insert()">Chèn S2 vào S1</button>
+                <button onclick="deleteAll()">Xóa S2 trong S1</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
